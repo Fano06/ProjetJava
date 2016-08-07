@@ -4,26 +4,25 @@ import java.util.ArrayList;
 
 public class Sportif {
 
-	private int idsportif;
+	int idsportif;
 	String nom;
 	String prenom;
 	String datenais;
 	int idequipe;
-	String mail;
-	private static int compteur = 0; 
+	String sport;
+	private static int compteur = 0;
 	ArrayList<Sportif> sportifs = new ArrayList<Sportif>();
 	
-	public Sportif(String nom, String prenom, String datenais, String mail){
-		this.idsportif=compteur++; 
+	public Sportif(String nom, String prenom, String datenais, String sport){
 		this.nom = nom;
 		this.prenom = prenom;
 		this.datenais = datenais;
 		this.idequipe = 0; 
-		this.mail = mail;
+		this.sport = sport;
 	}
 	
-	public int getId(){
-		return this.idsportif;
+	public int getId(int a){
+		return a;
 	}
 	
 	public String getNom(){
@@ -46,10 +45,10 @@ public class Sportif {
 		return s;
 	}
 	
-	public String rechercheSportif (int idsportif){
+	public String rechercheSportif (int idrech){
 		for (int i=0; i<compteur; i++){
-			if (idsportif == i){
-				return "ID: "+idsportif+"\n"+"Nom: "+nom+"\n"+"Prenom: "+prenom+"\n"+"Date de naissance: "+datenais+"\n"+"ID equipe: "+idequipe;
+			if (idrech == i){
+				return "ID: "+idrech+"\n"+"Nom: "+nom+"\n"+"Prenom: "+prenom+"\n"+"Date de naissance: "+datenais+"\n"+"ID equipe: "+idequipe+"\n"+"Sport :"+sport;
 			}
 		}
 		return "Le sportif n'existe pas";
@@ -59,8 +58,8 @@ public class Sportif {
 		
 	}
 	
-	public String toString(){
-		return "ID: "+idsportif+"\n"+"Nom: "+nom+"\n"+"PrÃ©nom: "+prenom+"\n"+"Date de naissance: "+datenais+"\n"+"ID equipe: "+idequipe;
+	public String toString(int idrech){
+		return "ID: "+idrech+"\n"+"Nom: "+nom+"\n"+"Prenom: "+prenom+"\n"+"Date de naissance: "+datenais+"\n"+"ID equipe: "+idequipe+"\n"+"Sport :"+sport;
 	}
 	
 }
