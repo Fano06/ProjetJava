@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Sportif {
 
-	int idsportif;
+	int idsportif=0;
 	String nom;
 	String prenom;
 	String datenais;
 	int idequipe;
 	String sport;
-	private static int compteur = 0;
+	int compteur = 0;
 	ArrayList<Sportif> sportifs = new ArrayList<Sportif>();
 	
 	public Sportif(String nom, String prenom, String datenais, String sport){
