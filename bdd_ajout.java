@@ -30,7 +30,7 @@ public class bdd_ajout {
 			stmt = conn.createStatement();
     
 			String sql = "INSERT INTO equipe " +
-						 "VALUES ('+idequipe+', '"+nom+"', '+nbstaff+', '+nbjoueur+', '"+sport+"', '+idtournoi+', '+classement+')";
+						 "VALUES ('0', '"+nom+"', '"+nbstaff+"', '"+nbjoueur+"', '"+sport+"', '"+idtournoi+"', '"+classement+"')";
 			stmt.executeUpdate(sql);
     
 			System.out.println("Donnees ajoutees dans la table...");
@@ -62,8 +62,8 @@ public class bdd_ajout {
 		}
 		System.out.println("Fin connexion BDD...");
 	}
-	/*
-	public void connexionAjoutSportif(int idsportif, String nom, String prenom, String dateNaissance, String sport, int idequipe){
+	
+	public static void connexionAjoutSportif(int idsportif, String nom, String prenom, String dateNaissance, int idequipe, String sport){
 		Connection conn = null;
 		Statement stmt = null;
 		try {
@@ -81,7 +81,7 @@ public class bdd_ajout {
 			stmt = conn.createStatement();
     
 			String sql = "INSERT INTO enseignant " +
-						 "VALUES ('"+idsportif+"', '"+nom+"', '"+prenom+"', '"+dateNaissance+"', '"+sport+"', '"+idequipe+"')";
+						 "VALUES ('0', '"+nom+"', '"+prenom+"', '"+dateNaissance+"', '"+idequipe+"', '"+sport+"')";
 			stmt.executeUpdate(sql);
     
 			System.out.println("DonnÃ©es ajoutÃ©es dans la table...");
@@ -114,7 +114,7 @@ public class bdd_ajout {
 		System.out.println("Fin connexion BDD...");
 	}
 	
-	public void connexionAjoutMatch(int idmatch, int idtournoi, int idequipe1, int idequipe2, String date, String lieu, String score, int idreport, int idannule){
+	public static void connexionAjoutMatch(int idmatch, int idtournoi, int idequipe1, int idequipe2, String date, String lieu, String score, int equipegagnante){
 		Connection conn = null;
 		Statement stmt = null;
 		try {
@@ -132,7 +132,7 @@ public class bdd_ajout {
 			stmt = conn.createStatement();
     
 			String sql = "INSERT INTO note " +
-						 "VALUES ('"+idmatch+"', '"+idtournoi+"', '"+idequipe1+"', '"+idequipe2+"'', '"+date+"'', '"+lieu+"'', '"+score+"'', '"+idreport+"'', '"+idannule+"')";
+						 "VALUES ('0', '"+idtournoi+"', '"+idequipe1+"', '"+idequipe2+"'', '"+date+"'', '"+lieu+"'', '"+score+"'', '"+equipegagnante+"')";
 			stmt.executeUpdate(sql);
     
 			System.out.println("DonnÃ©es ajoutÃ©es dans la table...");
@@ -465,6 +465,6 @@ public class bdd_ajout {
 	}
 		System.out.println("Fin connexion BDD...");
 	}
-	*/
+
 }
 
