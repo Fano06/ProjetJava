@@ -3,7 +3,7 @@ package multisport;
 //Etape 1: Import des packages requis
 import java.sql.*;
 
-public class bdd_ajout {
+public class AjoutSQL {
 	//JDBC diver nom et database URL
 	static final String JDBC_DRIVER ="com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/multisport";
@@ -165,7 +165,7 @@ public class bdd_ajout {
 		System.out.println("Fin connexion BDD...");
 	}
 	
-	public void connexionAjoutStaff(int idmembre, String nom, String prenom, int idequipe){
+	public static void connexionAjoutStaff(int idmembre, String nom, String prenom, int idequipe, String fonction){
 		Connection conn = null;
 		Statement stmt = null;
 		try {
@@ -182,8 +182,8 @@ public class bdd_ajout {
 			System.out.println("Insertion des donnÃ©es dans la table...");
 			stmt = conn.createStatement();
     
-			String sql = "INSERT INTO classe " +
-						 "VALUES ('"+idmembre+"', '"+nom+"', '"+prenom+"', '"+idequipe+"')";
+			String sql = "INSERT INTO staff " +
+						 "VALUES ('0', '"+nom+"', '"+prenom+"', '"+idequipe+"', '"+fonction+"')";
 			stmt.executeUpdate(sql);
     
 			System.out.println("DonnÃ©es ajoutÃ©es dans la table...");
@@ -215,7 +215,7 @@ public class bdd_ajout {
 		}
 		System.out.println("Fin connexion BDD...");
 	}
-	public void connexionAjoutTournoi(int idtournoi, String nom, String sport, int nbequipe, int match, String datdebut, String datefin, String lieu){
+	public static void connexionAjoutTournoi(int idtournoi, String nom, String sport, int nbequipe, String dateD, String dateF, String lieu){
 	Connection conn = null;
 	Statement stmt = null;
 	try {
@@ -229,14 +229,14 @@ public class bdd_ajout {
 		  System.out.println("Connexion Ã©tablie...");				  
 	
 		//Etape 4: Execution de la requÃªte
-		System.out.println("Insertion des donnÃ©es dans la table...");
+		System.out.println("Insertion des donnees dans la table...");
 		stmt = conn.createStatement();
 
-		String sql = "INSERT INTO classe " +
-					 "VALUES ('"+idtournoi+"', '"+nom+"', '"+sport+"', '"+nbequipe+"', '"+match+"', '"+datedebut+"', '"+datefin+"', '"+lieu+"')";
+		String sql = "INSERT INTO tournoi " +
+					 "VALUES ('0', '"+nom+"', '"+sport+"', '"+nbequipe+"', '"+dateD+"', '"+dateF+"', '"+lieu+"')";
 		stmt.executeUpdate(sql);
 
-		System.out.println("DonnÃ©es ajoutÃ©es dans la table...");
+		System.out.println("Donnees ajoutees dans la table...");
 
 	}
 	catch(SQLException se){
@@ -265,7 +265,7 @@ public class bdd_ajout {
 	}
 		System.out.println("Fin connexion BDD...");
 	}
-	public void connexionAjoutInscription(int idinscription, int idtournoi, int idequipe, String date){
+	public static void connexionAjoutInscription(int idinscription, int idtournoi, String tournoi, String equipe, String date){
 	Connection conn = null;
 	Statement stmt = null;
 	try {
@@ -282,8 +282,8 @@ public class bdd_ajout {
 		System.out.println("Insertion des donnÃ©es dans la table...");
 		stmt = conn.createStatement();
 
-		String sql = "INSERT INTO classe " +
-					 "VALUES ('"+idinscription+"', '"+idtournoi+"', '"+idequipe+"', '"+date+"')";
+		String sql = "INSERT INTO inscription " +
+					 "VALUES ('0', '"+idtournoi+"', '"+tournoi+"', '"+equipe+"', '"+date+"')";
 		stmt.executeUpdate(sql);
 
 		System.out.println("DonnÃ©es ajoutÃ©es dans la table...");
@@ -415,7 +415,8 @@ public class bdd_ajout {
 	}
 		System.out.println("Fin connexion BDD...");
 	}
-	public void connexionAjoutReport(int idreport, int idmatch, String datereport String cause){
+	
+	public void connexionAjoutReport(int idreport, int idmatch, String datereport, String cause){
 	Connection conn = null;
 	Statement stmt = null;
 	try {
@@ -432,7 +433,7 @@ public class bdd_ajout {
 		System.out.println("Insertion des donnÃ©es dans la table...");
 		stmt = conn.createStatement();
 
-		String sql = "INSERT INTO classe " +
+		String sql = "INSERT INTO report " +
 					 "VALUES ('"+idreport+"', '"+idmatch+"', '"+datereport+"', '"+cause+"')";
 		stmt.executeUpdate(sql);
 
