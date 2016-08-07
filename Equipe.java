@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Equipe {
 
-	private int idequipe;
+	int idequipe;
 	String nom;
 	int nbstaff;
 	int nbjoueur;
@@ -16,7 +16,7 @@ public class Equipe {
 	ArrayList<Equipe> equipes = new ArrayList<Equipe>();
 	
 	public Equipe(String nom, int nbstaff, int nbjoueur, String sport, int idtournoi, int classement){
-		this.idequipe = compteur++;
+		//this.idequipe = compteur++;
 		this.nom = nom;
 		this.nbstaff = nbstaff;
 		this.nbjoueur = nbjoueur;
@@ -25,9 +25,9 @@ public class Equipe {
 		this.classement = classement;
 	}
 	
-	public int getId(){
-		return this.idequipe;
-	}
+	//public int getId(){
+		//return this.idequipe;
+	//}
 	
 	public String getNom(){
 		return this.nom;
@@ -40,15 +40,7 @@ public class Equipe {
 	public void suppressionEquipe(Equipe b){
 		equipes.remove(b);
 	}
-	/*
-	public void ajoutSportif(Sportif c, int id){  ajouter un sportif Ã  une Ã©quipe 
-		equipes.id.add(c); 
-	}
 
-	public void suppressionSportif(Sportif b){ suppression sportif d'une Ã©quipe)
-		equipes.remove(b); 
-	}
-	*/
 	public String listeEquipes(){  /*afficher la liste des equipes*/ 
 		String s = new String();
 		for(Equipe a : equipes ){
@@ -60,7 +52,7 @@ public class Equipe {
 	public String rechercheEquipe (int idequipe){ 
 		for (int i=0; i<compteur; i++){
 			if (idequipe == i){
-				return "ID: "+idequipe+"\n"+"Nom: "+nom+"\n"+"Nombre de staff: "+nbstaff+"\n"+"Sport: "+sport+"\n"+"Nombre de joueur: "+nbjoueur+"\n"+"Fait parti du tournoi numero: "+idtournoi;
+				return "Nom: "+nom+"\n"+"Nombre de staff: "+nbstaff+"\n"+"Sport: "+sport+"\n"+"Nombre de joueur: "+nbjoueur+"\n"+"Fait parti du tournoi numero: "+idtournoi+"\n"+"Classement: "+classement;
 			}				
 		}
 		return "L'Ã©quipe n'existe pas";
@@ -71,7 +63,7 @@ public class Equipe {
 	}
 	
 	public String toString(){
-		return "ID: "+idequipe+"\n"+"Nom: "+nom+"\n"+"Nombre de staff: "+nbstaff+"\n"+"Sport: "+sport+"\n"+"Nombre de joueur: "+nbjoueur+"\n"+"Fait parti du tournoi nÂ°: "+idtournoi;
+		return "Nom: "+nom+"\n"+"Nombre de staff: "+nbstaff+"\n"+"Sport: "+sport+"\n"+"Nombre de joueur: "+nbjoueur+"\n"+"Fait parti du tournoi numero: "+idtournoi+"\n"+"Classement: "+classement;
 
 	}
 }
