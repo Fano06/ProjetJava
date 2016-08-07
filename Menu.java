@@ -3,198 +3,385 @@ package multisport;
 import java.util.Scanner;
 
 public class Menu{
+	
+	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args)
 	{
-	int menu1=0;
+	int menu1=11;
 	
-	Scanner sc = new Scanner(System.in);
-	System.out.println("Que souhaitez vous faire? (taper le numero)");
-	System.out.println("-1- Voir les fonctionnalites pour les sportifs");
-	System.out.println("-2- Voir les fonctionnalites pour les equipes");
-	System.out.println("-3- Voir les fonctionnalites pour les matchs");
-	System.out.println("Choix: ");
-	menu1= sc.nextInt();
 	
-	switch (menu1)
-	{
+	while (menu1!=0){
+		System.out.println("+-----------------------MENU-------------------+");
+		System.out.println("| Que souhaitez vous faire? (taper le numero)  |");
+		System.out.println("| 1- Gestion des sportifs                      |");
+		System.out.println("| 2- Gestion des equipes                       |");
+		System.out.println("| 3- Gestion des matchs                        |");
+		System.out.println("| 4- Gestion des inscriptions                  |");
+		System.out.println("| 5- Gestion des tournois                      |");
+		System.out.println("| 6- Gestion des annulations                   |");
+		System.out.println("| 7- Gestion des classements                   |");
+		System.out.println("| 8- Gestion des staffs                        |");
+		System.out.println("| Choix:                                       |");
+		System.out.println("+----------------------------------------------+");
+		menu1= scan.nextInt();
+		
+		switch(menu1){
 		case 1:
-		{
-			int choix1 =0;
-			System.out.println("-1- Ajouter un sportif");
-			System.out.println("-2- Supprimer un sportif");
-			System.out.println("-3- Avoir la liste des sportifs");
-			System.out.println("-4- Rechercher un sportifs");
-			System.out.println("-5- Modifier un sportif");
-			
-			choix1= sc.nextInt();
-			
-			switch(choix1)
-			{
-				case 1: 
-				{
-					System.out.println("Saisir le nom du sportif");
-					String nomsport=sc.nextLine();
-					System.out.println("Saisir le prÃ©nom du sportif");
-					String prenomsport=sc.nextLine();
-					System.out.println("Saisir la date de naissance du sportif (JJ/MM/AAAA");
-					String datesport=sc.nextLine();
-					System.out.println("Saisir le mail du sportif");
-					String mailsport=sc.nextLine();
-					break;
-				}
-				
-				case 2:
-				{
-					System.out.println("Saisir le nom du sportif");
-					String nomsport1= sc.nextLine();
-					break;
-				}
-				
-				case 3:
-				{
-					
-				}
-				
-				case 4:
-				{
-					System.out.println("Saisir le nom du sportif");
-					String nomsport2= sc.nextLine();
-					break;
-				}
-				
-				case 5:
-				{
-					System.out.println("Saisir le nom du sportif");
-					String nomsport3= sc.nextLine();
-					break;
-				}
-			}
-		}
-		
+			menusportif();
+			break;	
 		case 2:
-		{
-			int choix2 =0;
-			System.out.println("-1- Ajouter une Ã©quipe");
-			System.out.println("-2- Supprimer une Ã©quipe");
-			System.out.println("-3- Ajouter un sportif dans une Ã©quipe");
-			System.out.println("-4- Supprimer un sportif d'une Ã©quipe");
-			System.out.println("-5- Avoir la liste des Ã©quipes");
-			System.out.println("-6- Rechercher une Ã©quipe");
-			System.out.println("-7- Modifier une Ã©quipe");
+			menuequipe();
+			break;
+		case 3: 
+			menumatch();
+			break;
+		case 4:
+			menuinscription();
+			break;
+		case 5: 
+			menutournoi();
+			break;
+		case 6:
+			menuannulation();
+			break;
+		case 7:
+			menuclassement();
+			break;
+		case 8: 
+			menustaff();
+			break;
+		case 0:
+			System.out.println("Nous vous remercions de votre visite. A bientot\n");
+		default:
+			System.out.println("Vous vous etes trompe de choix. Veuillez recommencez\n");
 			
-			choix2= sc.nextInt();
-			
-			switch(choix2)
-			{
-				case 1: 
-				{
-					System.out.println("Saisir le nom de l'Ã©quipe");
-					String nomequipe=sc.nextLine();
-					System.out.println("Saisir la couleur de l'Ã©quipe");
-					String couleurequipet=sc.nextLine();
-					System.out.println("Saisir le sport de l'Ã©qupe");
-					String sportequipe=sc.nextLine();
-					System.out.println("Saisir le mail de l'Ã©quipe");
-					String mailequipe=sc.nextLine();
-					break;
-				}
-				
-				case 2:
-				{
-					System.out.println("Saisir le nom de l'Ã©quipe Ã  supprimer");
-					String nomequipe1=sc.nextLine();
-					break;
-				}
-				
-				case 3:
-				{
-					System.out.println("Saisir le nom du sportif");
-					String nomsportifajout=sc.nextLine();
-					System.out.println("Saisir le nom de l'Ã©quipe oÃ¹ ajouter le sportif");
-					String nomequipeajout=sc.nextLine();
-					break;
-				}
-				
-				case 4:
-				{
-					System.out.println("Saisir le nom du sportif");
-					String nomsportifesupp=sc.nextLine();
-					System.out.println("Saisir le nom de l'Ã©quipe oÃ¹ ajouter le sportif");
-					String nomequipesupp=sc.nextLine();
-					break;
-				}
-				
-				case 5:
-				{
-					
-				}
-				
-				case 6:
-				{
-					System.out.println("Saisir le nom du sportif");
-					String nomequipe2=sc.nextLine();
-					break;
-				}
-				
-				case 7:
-				{
-					System.out.println("Saisir le nom du sportif");
-					String nomequipe3=sc.nextLine();
-					break;
-				}
 			}
 		}
+	scan.close();
+	
+	}
+	
+	//-------Affichage des menus/fonctions hors du main 
+	
+	public static void menuequipe(){
+		int cpt = 11;
 		
-		case 3:
-		{
-			int choix3 =0;
-			System.out.println("-1- Ajouter un match");
-			System.out.println("-2- Supprimer un match");
-			System.out.println("-3- Rechercher un match");
-			System.out.println("-4- Avoir la liste des matchs");
-			System.out.println("-5- Modifier un match");
+		while(cpt!=0){
+			System.out.println("+---------------------------------------+");
+			System.out.println("|    Affichage et gestion des equipes   |");
+			System.out.println("| 1- Ajouter une equipe                 |");
+			System.out.println("| 2- Supprimer une equipe               |");
+			System.out.println("| 3- Ajouter un sportif dans une equipe |");
+			System.out.println("| 4- Supprimer un sportif d'une equipe  |");
+			System.out.println("| 5- Avoir la liste des equipes         |");
+			System.out.println("| 6- Rechercher une equipe              |");
+			System.out.println("| 7- Modifier une equipe                |");
+			System.out.println("| 0- Quitter           	                |");
+			System.out.println("| Choix:                                |");
+			System.out.println("+---------------------------------------+");
+			
+			cpt = scan.nextInt();
+			scan.nextLine();
+			
+			switch (cpt){
+			
+			case 1: 
+				ajoutEquipe();
+				break;
+			case 2:
+				suppEquipe();
+				break;
+			case 3:
+				AffectationSportif();
+				break;
+			case 4:
+				suppAffectation();
+				break;
+			case 5:
+				affichEquipe();
+				break;
+			case 6:
+				int id;
+				rechEquipe(int id);
+				break;
+			case 7: 
+				modifEquipe();
+				break;
+			case 0:
+				System.out.println("Merci de votre visite\n");
+				break;
+			default:
+				System.out.println("Vous n'avez pas saisi le bon chiffre\n");
+				break;
+			
+			}
+		}
+	}
+	
+	// Ajout Equipe
+	private static void ajoutEquipe(){
+		System.out.println("Nous allons proceder a l'ajout d'une equipe");
+		System.out.println("Veuillez saisir les donnees suivantes: \n");
+		System.out.println("Nom de l'equipe:\n");
+		String nom = scan.nextLine();
+		System.out.println("Nombre de personnes membres du staff: \n");
+		int nbstaff = scan.nextInt();
+		System.out.println("Nombre de joueurs: \n");
+		int nbjoueur = scan.nextInt();
+		System.out.println("Nom du sport: \n");
+		String sport = scan.nextLine();
+		System.out.println("ID du tournoi: \n");
+		int idtournoi = scan.nextInt();
+		System.out.println("Position dans le classement: \n");
+		int classement = scan.nextInt();
+		//Equipe a = new Equipe(nom, nbstaff, nbjoueur, sport, idtournoi, classement);
+		bdd_ajout.connexionAjoutEquipe(nom, nbstaff, nbjoueur, sport, idtournoi, classement);
+			
+	}
+	
+	// Afficher les equipes
+	private static void affichEquipe(){
+		System.out.println("Liste des equipes: ");
+		//Equipe a = new Equipe();
+		//a = bdd_lecture.LectEquipes();
+		
+	}
+	
+	// Supprimer une equipe
+	private static void suppEquipe(){
+		
+	}
+	
+	// Affection sportif
+	private static void AffectationSportif(){
+		
+	}
+	
+	// Supprimer affectation du sportif
+	private static void suppAffectation(){
+		
+	}
+	
+	// Rechercher une equipe
+	private static void rechEquipe(int id){
+		System.out.println("Entrer le numéro de l'équipe: ");
+		id = scan.nextInt();
+		LectureSQL.LectureEquipe(id);
+	}
+	
+	// Modifier une equipe
+	private static void modifEquipe(){
 
-			choix3= sc.nextInt();
+	}
+	
+	// Menu sportif
+	public static void menusportif(){
+		int cpt = 11;
+		
+		while (cpt!=0){
+			System.out.println("+---------------------------------------+");
+			System.out.println("|    Affichage et gestion des sports    |");
+			System.out.println("| 1- Ajouter un sportif                 |");
+			System.out.println("| 2- Supprimer un sportif               |");
+			System.out.println("| 3- Recherche un sportif               |");
+			System.out.println("| 4- Afficher la liste des sportifs     |");
+			System.out.println("| 0- Quitter           	                |");
+			System.out.println("| Choix:                                |");
+			System.out.println("+---------------------------------------+");
 			
-			switch(choix3)
-			{
-				case 1: 
-				{
-					System.out.println("Saisir le nom de l'Ã©quipe dom");
-					String nomequipedom=sc.nextLine();
-					System.out.println("Saisir le nom de l'Ã©quipe ext");
-					String nomequipeext= sc.nextLine();
-					System.out.println("Saisir le score de l'Ã©quipe dom");
-					String scoreequipedom=sc.nextLine();
-					System.out.println("Saisir le score de l'Ã©quipe ext");
-					String scoreequipeext= sc.nextLine();
-				}
-				
-				case 2:
-				{
-					
-				}
-				
-				case 3:
-				{
-					
-				}
-				
-				case 4:
-				{
-					
-				}
-				
-				case 5:
-				{
-					
-				}
+			cpt = scan.nextInt();
+			scan.nextLine();
+			
+			switch (cpt){
+			
+			case 1: 
+				ajoutSportif();
+				break;
+			case 2:
+				suppSportif();
+				break;
+			case 3:
+				recherSportif();
+				break;
+			case 4:
+				affichSportif();
+				break;
+			case 0:
+				System.out.println("Merci de votre visite\n");
+				break;
+			default:
+				System.out.println("Vous n'avez pas saisi le bon chiffre\n");
+				break;
+			
 			}
 		}
 		
+	}
+	
+	private static void ajoutSportif(){
+		int idsportif= 0;
+		System.out.println("Nous allons proceder a l'ajout d'un sportif");
+		System.out.println("Veuillez saisir les donnees suivantes: ");
+		System.out.println("Nom:");
+		String nom = scan.nextLine();
+		System.out.println("Prenom ");
+		String prenom = scan.nextLine();
+		System.out.println("Date de naissance (JJ-MM-AAAA: ");
+		String datenais = scan.nextLine();
+		System.out.println("ID de l'equipe: ");
+		int idequipe = scan.nextInt();
+		System.out.println("Adresse Mail: ");
+		String sport = scan.nextLine();
+		bdd_ajout.connexionAjoutSportif(idsportif, nom, prenom, datenais, idequipe, sport);
+	}
+	
+	private static void suppSportif(){
 		
 	}
+	
+	private static void recherSportif(){
+		
 	}
+	
+	private static void affichSportif(){
+		System.out.println("Liste des sportifs: ");
+		//a = bdd_lecture.LectSportifs();
+	}
+	
+	
+	
+	// Menu Inscription
+	
+	public static void menuinscription(){
+		
+	}
+	
+	// Menu tournoi
+	
+	public static void menutournoi(){
+		
+	}
+	
+	// Menu match
+	public static void menumatch(){
+		int cpt = 11;
+		
+		while (cpt!=0){
+			System.out.println("+---------------------------------------+");
+			System.out.println("|    Affichage et gestion des matchs    |");
+			System.out.println("| 1- Ajouter un match                   |");
+			System.out.println("| 2- Supprimer un match                 |");
+			System.out.println("| 3- Recherche un match                 |");
+			System.out.println("| 4- Afficher la liste des sportifs     |");
+			System.out.println("| 0- Quitter           	                |");
+			System.out.println("| Choix:                                |");
+			System.out.println("+---------------------------------------+");
+			
+			cpt = scan.nextInt();
+			scan.nextLine();
+			
+			switch (cpt){
+			
+			case 1: 
+				ajoutMatch();
+				break;
+			case 2:
+				suppMatch();
+				break;
+			case 3:
+				recherMatch();
+				break;
+			case 4:
+				affichMatch();
+				break;
+			case 0:
+				System.out.println("Merci de votre visite\n");
+				break;
+			default:
+				System.out.println("Vous n'avez pas saisi le bon chiffre\n");
+				break;
+			
+			}
+		}
+	}
+	
+	private static void ajoutMatch(){
+		int idmatch= 0;
+		System.out.println("Nous allons proceder a l'ajout d'un sportif");
+		System.out.println("Veuillez saisir les donnees suivantes: ");
+		System.out.println("ID tournoi: ");
+		int idtournoi = scan.nextInt();
+		System.out.println("ID equipe 1: ");
+		int idequipe1 = scan.nextInt();
+		System.out.println("Id equipe 1: ");
+		int idequipe2 = scan.nextInt();
+		System.out.println("Date du match: ");
+		String date = scan.nextLine();
+		System.out.println("Lieu du match: ");
+		String lieu = scan.nextLine();
+		System.out.println("Score (format X-X): ");
+		String score = scan.nextLine();
+		System.out.println("ID de l'equipe gagnante: ");
+		int equipegagnante = scan.nextInt();
+		bdd_ajout.connexionAjoutMatch(idmatch, idtournoi,idequipe1, idequipe2, date, lieu, score, equipegagnante);
+	}
+	
+	// Menu Annulation
+	public static void menuannulation(){
+		
+	}
+	
+	// Menu classement
+	public static void menuclassement(){
+		int cpt = 11;
+		
+		while (cpt!=0){
+			System.out.println("+-------------------------------------------+");
+			System.out.println("|    Affichage et gestion des classements   |");
+			System.out.println("| 1- Afficher l'ensemble des classements    |");
+			System.out.println("| 2- Rechercher un classement               |");
+			System.out.println("| 0- Quitter           	                    |");
+			System.out.println("| Choix:                                    |");
+			System.out.println("+-------------------------------------------+");
+			
+			cpt = scan.nextInt();
+			scan.nextLine();
+			
+			switch (cpt){
+			
+			case 1: 
+				affichClassement();
+				break;
+			case 2:
+				recherClassement();
+				break;
+			case 0:
+				System.out.println("Merci de votre visite\n");
+				break;
+			default:
+				System.out.println("Vous n'avez pas saisi le bon chiffre\n");
+				break;
+			
+			}
+		}
+	}
+	
+	private static void affichClassement(){
+		System.out.println("Liste des classements: ");
+		bdd_lecture.LectClassements();
+	}
+	
+	private static void recherClassement(){
+		
+	}
+	
+	// Menu Staff
+	
+	public static void menustaff(){
+		
+	}
+		
+		
 }
 
