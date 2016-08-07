@@ -68,18 +68,18 @@ public class Menu{
 		int cpt = 11;
 		
 		while(cpt!=0){
-			System.out.println("+---------------------------------------+");
-			System.out.println("|    Affichage et gestion des equipes   |");
-			System.out.println("| 1- Ajouter une equipe                 |");
-			System.out.println("| 2- Supprimer une equipe               |");
-			System.out.println("| 3- Ajouter un sportif dans une equipe |");
-			System.out.println("| 4- Supprimer un sportif d'une equipe  |");
-			System.out.println("| 5- Avoir la liste des equipes         |");
-			System.out.println("| 6- Rechercher une equipe              |");
-			System.out.println("| 7- Modifier une equipe                |");
-			System.out.println("| 0- Quitter           	                |");
-			System.out.println("| Choix:                                |");
-			System.out.println("+---------------------------------------+");
+			System.out.println("+------------------------------------------------+");
+			System.out.println("|    Affichage et gestion des equipes            |");
+			System.out.println("| 1- Ajouter une equipe                          |");
+			System.out.println("| 2- Supprimer une equipe                        |");
+			System.out.println("| 3- Afficher les sportifs d'une equipe          |");
+			System.out.println("| 4- Afficher les compositions de chaque equipe  |");
+			System.out.println("| 5- Avoir la liste des equipes                  |");
+			System.out.println("| 6- Rechercher une equipe                       |");
+			System.out.println("| 7- Modifier une equipe                         |");
+			System.out.println("| 0- Quitter           	                         |");
+			System.out.println("| Choix:                                         |");
+			System.out.println("+------------------------------------------------+");
 			
 			cpt = scan.nextInt();
 			scan.nextLine();
@@ -93,10 +93,11 @@ public class Menu{
 				suppEquipe();
 				break;
 			case 3:
-				AffectationSportif();
+				int idrech=0;
+				AffichSportif(idrech);
 				break;
 			case 4:
-				suppAffectation();
+				affichAllSportif();
 				break;
 			case 5:
 				affichEquipe();
@@ -137,7 +138,7 @@ public class Menu{
 		System.out.println("Position dans le classement: \n");
 		int classement = scan.nextInt();
 		//Equipe a = new Equipe(nom, nbstaff, nbjoueur, sport, idtournoi, classement);
-		bdd_ajout.connexionAjoutEquipe(idequipe, nom, nbstaff, nbjoueur, sport, idtournoi, classement);
+		AjoutSQL.connexionAjoutEquipe(idequipe, nom, nbstaff, nbjoueur, sport, idtournoi, classement);
 			
 	}
 	
@@ -154,27 +155,29 @@ public class Menu{
 	}
 	
 	// Affection sportif
-	private static void AffectationSportif(){
-		
+	private static void AffichSportif(int idrech){
+		System.out.println("Entrez le nom de l'équipe: ");
+		idrech = scan.nextInt();
+		LectureSQL.LectSportifInEquipe(idrech);	
 	}
 	
 	// Supprimer affectation du sportif
-	private static void suppAffectation(){
-		
+	private static void affichAllSportif(){
+		LectureSQL.LectSportifByEquipe();
 	}
 	
 	// Rechercher une equipe
 	private static void rechEquipe(int id){
-		System.out.println("Entrer le numéro de l'équipe: ");
+		System.out.println("Entrez l'identifiant de l'équipe: ");
 		id = scan.nextInt();
 		LectureSQL.LectUneEquipe(id);
 	}
 	
 	// Modifier une equipe
 	private static void modifEquipe(){
-
 	}
 	
+
 	// Menu sportif
 	public static void menusportif(){
 		int cpt = 11;
