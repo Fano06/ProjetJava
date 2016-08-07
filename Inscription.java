@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Inscription {
 	
-	private int idinscription;
+	int idinscription = 0;
+	int idtournoi;
 	String tournoi;
 	String equipe;
 	String dateInscription;
@@ -14,7 +15,7 @@ public class Inscription {
 	ArrayList<Inscription> inscriptions = new ArrayList<Inscription>();
 	
 	public Inscription (String tournoi, String equipe, String dateInscription){
-		this.idinscription=compteur++;
+		this.idinscription=0;
 		this.tournoi=tournoi;
 		this.equipe=equipe;
 		this.dateInscription=dateInscription;
