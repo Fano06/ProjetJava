@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Match {
 
-	private int idmatch;
+	int idmatch;
 	int idtournoi;
 	int equipe1;
 	int equipe2;
