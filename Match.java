@@ -6,25 +6,30 @@ import java.util.ArrayList;
 public class Match {
 
 	private int idmatch;
+	int idtournoi;
 	int equipe1;
 	int equipe2;
-	int scoreEquipe1;
-	int scoreEquipe2;
+	String date;
+	String lieu;
+	String score;
 	int equipegagnante;
 	private static int compteur = 0;
 	ArrayList<Match> matchs = new ArrayList<Match>();
 	
-	public Match(int equipeDom, int equipeExt, int scoreEquipeDom, int scoreEquipeExt, int equipegagnante){
-		this.idmatch = compteur++;
-		this.equipe1 = equipeDom;
-		this.equipe2 = equipeExt;
-		this.scoreEquipe1 = scoreEquipeDom;
-		this.scoreEquipe2 = scoreEquipeExt;	
+	public Match(int idtournoi, int equipe1, int equipe2, String date, String lieu, String score, int equipegagnante){
+		this.idmatch = 0;
+		this.idtournoi = idtournoi;
+		this.equipe1 = equipe1;
+		this.equipe2 = equipe2;
+		this.date = date;
+		this.lieu = lieu;
+		this.score = score;
 		this.equipegagnante = equipegagnante;
+		
 	}
 	
-	public int getId(){
-		return this.idmatch;
+	public int getId(int a ){
+		return a;
 	}
 	
 	public void ajoutMatch(Match a){
@@ -35,10 +40,10 @@ public class Match {
 		matchs.remove(b);
 	}
 	
-	public String rechercheMatch (int idmatch){
+	public String rechercheMatch (int idrech){
 		for (int i=0; i<compteur; i++){
-			if (idmatch == i){
-				return "ID match: "+idmatch+" ,"+equipe1+" "+scoreEquipe1+" - "+scoreEquipe2+" "+equipe2;
+			if (idrech== i){
+				return "ID match: "+idrech+"\n"+"ID tournoi: "+idtournoi+"\n"+"Equipe: "+equipe1+"\n"+"Contre: "+equipe2+"\n"+"Date: "+date+"\n"+"Lieu: "+lieu+"\n"+"Score: "+score+"\n"+"Equipe gagnante: "+equipegagnante+"\n";
 			}				
 		}
 		return "Le match n'existe pas";
@@ -56,9 +61,8 @@ public class Match {
 		
 	}
 	
-	public String toString(){
-		String s = "ID match: "+idmatch+" ,"+equipe1+" "+scoreEquipe1+" - "+scoreEquipe2+" "+equipe2;
-		return s;
+	public String toString(int idrech){
+		return "ID match: "+idrech+"\n"+"ID tournoi: "+idtournoi+"\n"+"Equipe: "+equipe1+"\n"+"Contre: "+equipe2+"\n"+"Date: "+date+"\n"+"Lieu: "+lieu+"\n"+"Score: "+score+"\n"+"Equipe gagnante: "+equipegagnante+"\n";
 	}
 }
 
