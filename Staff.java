@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Staff {
 	
-	private int idmembre;
+	int idmembre;
 	String nom;
 	String prenom;
 	int idequipe;
@@ -14,7 +14,7 @@ public class Staff {
 	ArrayList<Staff> staffs = new ArrayList<Staff>();
 	
 	public Staff(String nom, String prenom, int idequipe, String fonction){
-		this.idmembre = compteur++;
+		this.idmembre = 0;
 		this.nom=nom;
 		this.prenom=prenom;
 		this.idequipe=idequipe;
