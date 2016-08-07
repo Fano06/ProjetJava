@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Report {
 	
-	private int idreport;
+	int idreport;
 	int idmatch;
 	String datereport;
 	String cause;
@@ -12,14 +12,14 @@ public class Report {
 	ArrayList<Report> reports = new ArrayList<Report>();
 	
 	public Report (int idmatch, String datereport, String cause){
-		this.idreport = compteur++;
+		this.idreport = 0;
 		this.idmatch = idmatch;
 		this.datereport = datereport;
 		this.cause = cause;
 	}
 	
-	public int getId(){
-		return this.idreport;
+	public int getId(int a){
+		return a;
 	}
 	
 	public String datereport(){
@@ -50,10 +50,10 @@ public class Report {
 		return s;
 	}
 	
-	public String rechercheReport (int idreport){
+	public String rechercheReport (int idrech){
 		for (int i=0; i<compteur; i++){
-			if (idreport == i){
-				return "ID: "+idreport+"\n"+"ID Match: "+idmatch+"\n"+"Date report: "+datereport+"\n"+"Cause : "+cause;
+			if (idrech == i){
+				return "ID: "+idrech+"\n"+"ID Match: "+idmatch+"\n"+"Date report: "+datereport+"\n"+"Cause : "+cause;
 			}
 		}
 		return "Il n'y aucun report correspondant";
