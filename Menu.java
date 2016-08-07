@@ -102,8 +102,8 @@ public class Menu{
 				affichEquipe();
 				break;
 			case 6:
-				int id;
-				rechEquipe(int id);
+				int id=0;
+				rechEquipe(id);
 				break;
 			case 7: 
 				modifEquipe();
@@ -121,6 +121,7 @@ public class Menu{
 	
 	// Ajout Equipe
 	private static void ajoutEquipe(){
+		int idequipe= 0;
 		System.out.println("Nous allons proceder a l'ajout d'une equipe");
 		System.out.println("Veuillez saisir les donnees suivantes: \n");
 		System.out.println("Nom de l'equipe:\n");
@@ -136,15 +137,14 @@ public class Menu{
 		System.out.println("Position dans le classement: \n");
 		int classement = scan.nextInt();
 		//Equipe a = new Equipe(nom, nbstaff, nbjoueur, sport, idtournoi, classement);
-		bdd_ajout.connexionAjoutEquipe(nom, nbstaff, nbjoueur, sport, idtournoi, classement);
+		bdd_ajout.connexionAjoutEquipe(idequipe, nom, nbstaff, nbjoueur, sport, idtournoi, classement);
 			
 	}
 	
 	// Afficher les equipes
 	private static void affichEquipe(){
 		System.out.println("Liste des equipes: ");
-		//Equipe a = new Equipe();
-		//a = bdd_lecture.LectEquipes();
+		LectureSQL.LectEquipes();
 		
 	}
 	
@@ -167,7 +167,7 @@ public class Menu{
 	private static void rechEquipe(int id){
 		System.out.println("Entrer le numéro de l'équipe: ");
 		id = scan.nextInt();
-		LectureSQL.LectureEquipe(id);
+		LectureSQL.LectUneEquipe(id);
 	}
 	
 	// Modifier une equipe
@@ -202,7 +202,8 @@ public class Menu{
 				suppSportif();
 				break;
 			case 3:
-				recherSportif();
+				int id=0;
+				recherSportif(id);
 				break;
 			case 4:
 				affichSportif();
@@ -233,20 +234,22 @@ public class Menu{
 		int idequipe = scan.nextInt();
 		System.out.println("Adresse Mail: ");
 		String sport = scan.nextLine();
-		bdd_ajout.connexionAjoutSportif(idsportif, nom, prenom, datenais, idequipe, sport);
+		AjoutSQL.connexionAjoutSportif(idsportif, nom, prenom, datenais, idequipe, sport);
 	}
 	
 	private static void suppSportif(){
 		
 	}
 	
-	private static void recherSportif(){
-		
+	private static void recherSportif(int id){
+		System.out.println("Entrer l'identifiant du sport: ");
+		id = scan.nextInt();
+		LectureSQL.LectUneEquipe(id);
 	}
 	
 	private static void affichSportif(){
 		System.out.println("Liste des sportifs: ");
-		//a = bdd_lecture.LectSportifs();
+		LectureSQL.LectSportifs();
 	}
 	
 	
@@ -254,12 +257,155 @@ public class Menu{
 	// Menu Inscription
 	
 	public static void menuinscription(){
+		int cpt = 11;
+		
+		while (cpt!=0){
+			System.out.println("+---------------------------------------------+");
+			System.out.println("|    Affichage et gestion des inscriptins     |");
+			System.out.println("| 1- Ajouter une inscription                  |");
+			System.out.println("| 2- Supprimer une inscription                |");
+			System.out.println("| 3- Rechercher une inscription               |");
+			System.out.println("| 4- Afficher la liste des inscriptions       |");
+			System.out.println("| 0- Quitter           	                      |");
+			System.out.println("| Choix:                                      |");
+			System.out.println("+---------------------------------------------+");
+			
+			cpt = scan.nextInt();
+			scan.nextLine();
+			
+			switch (cpt){
+			
+			case 1: 
+				ajoutInscription();
+				break;
+			case 2:
+				suppInscription();
+				break;
+			case 3:
+				int id=0;
+				recherInscription(id);
+				break;
+			case 4:
+				affichInscription();
+				break;
+			case 0:
+				System.out.println("Merci de votre visite\n");
+				break;
+			default:
+				System.out.println("Vous n'avez pas saisi le bon chiffre\n");
+				break;
+			
+			}
+		}
+	}
+	
+	private static void ajoutInscription(){
+		int idinscription= 0;
+		System.out.println("Nous allons proceder a l'inscription d'une equipe");
+		System.out.println("Veuillez saisir les donnees suivantes: ");
+		System.out.println("ID tournoi: ");
+		int idtournoi = scan.nextInt();
+		System.out.println("Nom tournoi: ");
+		String tournoi = scan.nextLine();
+		System.out.println("Nom de l'equipe: ");
+		String equipe = scan.nextLine();
+		System.out.println("Date d'inscription: ");
+		String date = scan.nextLine();
+		AjoutSQL.connexionAjoutInscription(idinscription, idtournoi, tournoi, equipe, date);
+		ajoutEquipe();
+	}
+	
+	private static void suppInscription(){
 		
 	}
 	
+	private static void recherInscription(int id){
+		System.out.println("Entrer l'identifiant de l'inscription: ");
+		id = scan.nextInt();
+		LectureSQL.LectUneEquipe(id);
+	}
+	
+	private static void affichInscription(){
+		System.out.println("Liste des inscriptions: ");
+		LectureSQL.LectInscriptions();
+	}
 	// Menu tournoi
 	
 	public static void menutournoi(){
+		int cpt = 11;
+		
+		while (cpt!=0){
+			System.out.println("+---------------------------------------+");
+			System.out.println("|    Affichage et gestion des tournois  |");
+			System.out.println("| 1- Ajouter un tournoi                 |");
+			System.out.println("| 2- Supprimer un tournoi               |");
+			System.out.println("| 3- Rechercher un tournoi              |");
+			System.out.println("| 4- Afficher la liste des tournois     |");
+			System.out.println("| 0- Quitter           	                |");
+			System.out.println("| Choix:                                |");
+			System.out.println("+---------------------------------------+");
+			
+			cpt = scan.nextInt();
+			scan.nextLine();
+			
+			switch (cpt){
+			
+			case 1: 
+				ajoutTournoi();
+				break;
+			case 2:
+				suppTournoi();
+				break;
+			case 3:
+				int id = 0;
+				recherTournoi(id);
+				break;
+			case 4:
+				affichTournoi();
+				break;
+			case 0:
+				System.out.println("Merci de votre visite\n");
+				break;
+			default:
+				System.out.println("Vous n'avez pas saisi le bon chiffre\n");
+				break;
+			
+			}
+		}
+	}
+	
+	private static void ajoutTournoi(){
+		int idtournoi= 0;
+		System.out.println("Nous allons proceder a l'ajout d'un tournoi");
+		System.out.println("Veuillez saisir les donnees suivantes: ");
+		System.out.println("Nom du tournoi: ");
+		String nom = scan.nextLine();
+		System.out.println("Ce tournoi concerne le sport: ");
+		String sport = scan.nextLine();
+		System.out.println("Nombre d'equipes: ");
+		int nbequipe = scan.nextInt();
+		System.out.println("Ce tournoi commence le: ");
+		String dateD = scan.nextLine();
+		System.out.println("Ce tournoi fini le: ");
+		String dateF = scan.nextLine();
+		System.out.println("Il se deroulera: ");
+		String lieu = scan.nextLine();
+		AjoutSQL.connexionAjoutTournoi(idtournoi, nom, sport, nbequipe, dateD, dateF, lieu);
+	}
+	
+	private static void suppTournoi(){
+		
+	}
+	
+	private static void recherTournoi(int id){
+		System.out.println("Entrer le numéro de l'équipe: ");
+		id = scan.nextInt();
+		LectureSQL.LectUneEquipe(id);
+	}
+	
+	private static void affichTournoi(){
+		System.out.println("Liste des tournois: ");
+		LectureSQL.LectTournois();
 		
 	}
 	
@@ -273,7 +419,7 @@ public class Menu{
 			System.out.println("| 1- Ajouter un match                   |");
 			System.out.println("| 2- Supprimer un match                 |");
 			System.out.println("| 3- Recherche un match                 |");
-			System.out.println("| 4- Afficher la liste des sportifs     |");
+			System.out.println("| 4- Afficher la liste des matchs       |");
 			System.out.println("| 0- Quitter           	                |");
 			System.out.println("| Choix:                                |");
 			System.out.println("+---------------------------------------+");
@@ -290,7 +436,8 @@ public class Menu{
 				suppMatch();
 				break;
 			case 3:
-				recherMatch();
+				int id = 0;
+				recherMatch(id);
 				break;
 			case 4:
 				affichMatch();
@@ -324,7 +471,23 @@ public class Menu{
 		String score = scan.nextLine();
 		System.out.println("ID de l'equipe gagnante: ");
 		int equipegagnante = scan.nextInt();
-		bdd_ajout.connexionAjoutMatch(idmatch, idtournoi,idequipe1, idequipe2, date, lieu, score, equipegagnante);
+		AjoutSQL.connexionAjoutMatch(idmatch, idtournoi,idequipe1, idequipe2, date, lieu, score, equipegagnante);
+	}
+	
+	private static void suppMatch(){
+		
+	}
+	
+	private static void recherMatch(int id){
+		System.out.println("Entrer l'identifiant du match: ");
+		id = scan.nextInt();
+		LectureSQL.LectUnMatch(id);
+		
+	}
+	
+	private static void affichMatch(){
+		System.out.println("Liste des matchs: ");
+		LectureSQL.LectMatchs();
 	}
 	
 	// Menu Annulation
@@ -354,7 +517,8 @@ public class Menu{
 				affichClassement();
 				break;
 			case 2:
-				recherClassement();
+				int id = 0;
+				recherClassement(id);
 				break;
 			case 0:
 				System.out.println("Merci de votre visite\n");
@@ -372,15 +536,86 @@ public class Menu{
 		bdd_lecture.LectClassements();
 	}
 	
-	private static void recherClassement(){
-		
+	private static void recherClassement(int id){
+		System.out.println("Entrer l'identifiant du classement: ");
+		id = scan.nextInt();
+		LectureSQL.LectUnClassement(id);
 	}
 	
 	// Menu Staff
 	
 	public static void menustaff(){
+		int cpt = 11;
 		
-	}
+		while (cpt!=0){
+			System.out.println("+---------------------------------------+");
+			System.out.println("|    Affichage et gestion des staffs    |");
+			System.out.println("| 1- Ajouter un staff                   |");
+			System.out.println("| 2- Supprimer un staff                 |");
+			System.out.println("| 3- Rechercher un staff                |");
+			System.out.println("| 4- Afficher la liste des staffs       |");
+			System.out.println("| 0- Quitter           	                |");
+			System.out.println("| Choix:                                |");
+			System.out.println("+---------------------------------------+");
+			
+			cpt = scan.nextInt();
+			scan.nextLine();
+			
+			switch (cpt){
+			
+			case 1: 
+				ajoutStaff();
+				break;
+			case 2:
+				suppStaff();
+				break;
+			case 3:
+				int id = 0;
+				recherStaff(id);
+				break;
+			case 4:
+				affichStaff();
+				break;
+			case 0:
+				System.out.println("Merci de votre visite\n");
+				break;
+			default:
+				System.out.println("Vous n'avez pas saisi le bon chiffre\n");
+				break;
+			
+			}
+		}
+	}	
+	
+		private static void ajoutStaff() {
+			int idmembre= 0;
+			System.out.println("Nous allons proceder a l'ajout d'un staff");
+			System.out.println("Veuillez saisir les donnees suivantes: ");
+			System.out.println("Nom du membre: ");
+			String nom = scan.nextLine();
+			System.out.println("Prenom: ");
+			String prenom = scan.nextLine();
+			System.out.println("ID de l'equipe affiliee: ");
+			int idequipe = scan.nextInt();
+			System.out.println("Fonction: ");
+			String fonction = scan.nextLine();
+			AjoutSQL.connexionAjoutStaff(idmembre, nom, prenom, idequipe, fonction);
+		}
+		
+		private static void suppStaff(){
+			
+		}
+		
+		private static void recherStaff(int id){
+			System.out.println("Entrer l'identifiant du membre: ");
+			id = scan.nextInt();
+			LectureSQL.LectUnStaff(id);
+		}
+		
+		private static void affichStaff(){
+			System.out.println("Liste des membres des staffs: ");
+			LectureSQL.LectStaffs();
+		}
 		
 		
 }
