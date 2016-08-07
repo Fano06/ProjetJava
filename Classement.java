@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public class Classement {
 	
-	private int idclassement;
+	int idclassement;
+	int idtournoi;
+	int idequipe;
 	String sport;
 	int nbequipes;
 	ArrayList<Equipe> equipes = new ArrayList<Equipe>();
 	private static int compteur = 1;
 	
-	public int getId(){
-		return this.idclassement;
+	public int getId(int a){
+		return a;
 	}
 	
 	public String getSport(){
@@ -47,12 +49,12 @@ public class Classement {
 		nbequipes--;
 	}
 	
-	public boolean verifierEquipe(int id){
-		for(Equipe a: equipes){
-	    	if(a.getId() == id){
-	    		return true;
-	    	}
-	    }
-	    return false;
+	public String rechercheClassement (int idrech){
+		for (int i=0; i<compteur; i++){
+			if (idrech== i){
+				return "ID classement: "+idrech+"\n"+"ID tournoi: "+idtournoi+"\n"+"ID Equipe: "+idequipe+"\n"+"Sport: "+sport+"\n";
+			}				
+		}
+		return "Le classement n'existe pas";
 	}
 }
