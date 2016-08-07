@@ -4,23 +4,29 @@ import java.util.ArrayList;
 
 public class Tournoi {
 	
-	private int idtournoi;
+	int idtournoi;
 	String nom;
 	String sport;
 	int nbequipe;
+	String dateD;
+	String dateF;
+	String lieu;
 	private static int compteur = 0;
 	
 	ArrayList<Tournoi> tournois = new ArrayList<Tournoi>();
 	
-	public Tournoi (int idtournoi, String nom, String sport, int nbequipe){
-		this.idtournoi = compteur++;
+	public Tournoi (int idtournoi, String nom, String sport, int nbequipe, String dateD, String dateF, String lieu){
+		this.idtournoi = 0;
 		this.nom = nom;
 		this.sport = sport;
 		this.nbequipe = nbequipe;
+		this.dateD = dateD;
+		this.dateF = dateF;
+		this.lieu = lieu;
 	}
 	
-	public int getId(){
-		return this.idtournoi;
+	public int getId(int a){
+		return a;
 	}
 	
 	public void ajoutTournoi(Tournoi a){
@@ -31,10 +37,10 @@ public class Tournoi {
 		tournois.remove(b);
 	}
 	
-	public String rechercheTournois (int idtournoi){
+	public String rechercheTournois (int idrech){
 		for (int i=0; i<compteur; i++){
-			if (idtournoi == i){
-				return "ID tournoi: "+idtournoi+" ,"+nom+" "+sport+" - "+nbequipe;
+			if (idrech == i){
+				return "ID tournoi: "+idrech+" Nom: "+nom+" Sport: "+sport+"Nombre d'equipes "+nbequipe+"Date de debut: "+dateD+"Date de fin "+dateF+"Lieu du tournoi "+lieu;
 			}				
 		}
 		return "Le match n'existe pas";
@@ -52,9 +58,8 @@ public class Tournoi {
 		
 	}
 	
-	public String toString(){
-		String s = "ID tournoi: "+idtournoi+" ,"+nom+" "+sport+" , "+nbequipe;
-		return s;
+	public String toString(){			
+		return "ID tournoi: "+idtournoi+" Nom: "+nom+" Sport: "+sport+"Nombre d'equipes "+nbequipe+"Date de debut: "+dateD+"Date de fin "+dateF+"Lieu du tournoi "+lieu;
 	}
 
 }
