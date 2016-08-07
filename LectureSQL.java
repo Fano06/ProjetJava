@@ -48,6 +48,7 @@ public class LectureSQL {
 		    	  System.out.print(", Nom: "+nom);
 		    	  System.out.print(", Nombre de personnes composant le staff:"+nbstaff);
 		    	  System.out.print(", Nombre de joueurs: "+nbjoueur);
+		    	  System.out.print(", Sport concerne: "+sport);
 		    	  System.out.print(", ID tournoi: "+idtournoi);
 		    	  System.out.println(", Classement: "+classement);
 		      }
@@ -115,12 +116,230 @@ public class LectureSQL {
 		    	  int idequipe = rs.getInt("idequipe");
 		    	  
 		    	  //affichage des valeurs de la BDD
-				  System.out.print("ID equie: "+idequipe);
+				  System.out.print("ID equipe: "+idequipe);
 		    	  System.out.print(", Nom: "+nom);
 		    	  System.out.print(", Nombre de personnes composant le staff:"+nbstaff);
 		    	  System.out.print(", Nombre de joueurs: "+nbjoueur);
+		    	  System.out.print(", Sport concerne: "+sport);
 		    	  System.out.print(", ID tournoi: "+idtournoi);
 		    	  System.out.println(", Classement: "+classement);
+		    	 
+		    	  
+		      }
+		      
+		    //Etape 6: Nettoyage de l'environnement
+		      rs.close();
+		      stmt.close();
+		      conn.close();		         
+		    } 
+		    catch (SQLException se) {
+		    	//Gestion erreurs pour JDBC
+		      se.printStackTrace();
+		    }
+		    catch (Exception e){
+		    	//Gestion erreurs pour Class.forName
+		    	e.printStackTrace();
+		    }
+		    finally{
+		    	//bloc finally utilisÃ© pour fermer les ressources
+		    	try{
+		    		if(stmt != null)
+		    			stmt.close();
+		    	}
+		    	catch (SQLException se2){
+		    	}//rien Ã  faire
+		    	try{
+		    		if(conn != null)
+		    			conn.close();
+		    	}
+		    	catch (SQLException se){
+		    		se.printStackTrace();
+		    	}
+		    }
+		 
+		  }
+	
+	public static void LectSportifInEquipe(int id) {
+		Connection conn = null;
+		Statement stmt = null;
+		int idsportif=0;
+		    try {
+		    //Etape 2: Enregistrement JDBC Driver
+		      Class.forName("com.mysql.jdbc.Driver");
+		      System.out.println("Driver O.K.");
+		      
+		    //Etape 3: Ouverture connexion
+		      System.out.println("Connexion a  la BDD...");
+		      conn = DriverManager.getConnection(DB_URL,USER, PWD);
+			  System.out.println("Connexion etablie...");
+		      
+		    //Etape 4: Execution de la requete
+		      System.out.println("Creation de la requete...");
+		      stmt = conn.createStatement();
+		      String sql;
+		      sql = "(SELECT  idsportif, nom, prenom, datenais, idequipe, sport FROM sportif WHERE idequipe='"+id+"')";
+		      ResultSet rs = stmt.executeQuery(sql);
+		      
+		    //Etape 5: Extraction data du ResultSet
+		      while(rs.next()){
+		    	  //Retrieve par colonne
+		    	  String nom = rs.getString("nom");
+		    	  String prenom = rs.getString("prenom");
+		    	  String datenais = rs.getString("datenais");
+		    	  int idequipe = rs.getInt("idequipe");
+		    	  String sport = rs.getString("sport");
+		    	  
+		    	  //affichage des valeurs de la BDD
+				  System.out.print("ID sportif: "+idsportif);
+		    	  System.out.print(", Nom: "+nom);
+		    	  System.out.print(", Prenom:"+prenom);
+		    	  System.out.print(", Date de naissance: "+datenais);
+		    	  System.out.print(", ID equipe: "+idequipe);
+		    	  System.out.print(", Sport concerne: "+sport);
+		    	 
+		    	  
+		      }
+		      
+		    //Etape 6: Nettoyage de l'environnement
+		      rs.close();
+		      stmt.close();
+		      conn.close();		         
+		    } 
+		    catch (SQLException se) {
+		    	//Gestion erreurs pour JDBC
+		      se.printStackTrace();
+		    }
+		    catch (Exception e){
+		    	//Gestion erreurs pour Class.forName
+		    	e.printStackTrace();
+		    }
+		    finally{
+		    	//bloc finally utilisÃ© pour fermer les ressources
+		    	try{
+		    		if(stmt != null)
+		    			stmt.close();
+		    	}
+		    	catch (SQLException se2){
+		    	}//rien Ã  faire
+		    	try{
+		    		if(conn != null)
+		    			conn.close();
+		    	}
+		    	catch (SQLException se){
+		    		se.printStackTrace();
+		    	}
+		    }
+		 
+		  }
+	
+	public static void LectSportifByEquipe() {
+		Connection conn = null;
+		Statement stmt = null;
+		int idsportif=0;
+		    try {
+		    //Etape 2: Enregistrement JDBC Driver
+		      Class.forName("com.mysql.jdbc.Driver");
+		      System.out.println("Driver O.K.");
+		      
+		    //Etape 3: Ouverture connexion
+		      System.out.println("Connexion a  la BDD...");
+		      conn = DriverManager.getConnection(DB_URL,USER, PWD);
+			  System.out.println("Connexion etablie...");
+		      
+		    //Etape 4: Execution de la requete
+		      System.out.println("Creation de la requete...");
+		      stmt = conn.createStatement();
+		      String sql;
+		      sql = "(SELECT  idsportif, nom, prenom, datenais, idequipe, sport FROM sportif GROUP BY idequipe)";
+		      ResultSet rs = stmt.executeQuery(sql);
+		      
+		    //Etape 5: Extraction data du ResultSet
+		      while(rs.next()){
+		    	  //Retrieve par colonne
+		    	  String nom = rs.getString("nom");
+		    	  String prenom = rs.getString("prenom");
+		    	  String datenais = rs.getString("datenais");
+		    	  int idequipe = rs.getInt("idequipe");
+		    	  String sport = rs.getString("sport");
+		    	  
+		    	  //affichage des valeurs de la BDD
+				  System.out.print("ID sportif: "+idsportif);
+		    	  System.out.print(", Nom: "+nom);
+		    	  System.out.print(", Prenom:"+prenom);
+		    	  System.out.print(", Date de naissance: "+datenais);
+		    	  System.out.print(", ID equipe: "+idequipe);
+		    	  System.out.print(", Sport concerne: "+sport);
+		    	 
+		    	  
+		      }
+		      
+		    //Etape 6: Nettoyage de l'environnement
+		      rs.close();
+		      stmt.close();
+		      conn.close();		         
+		    } 
+		    catch (SQLException se) {
+		    	//Gestion erreurs pour JDBC
+		      se.printStackTrace();
+		    }
+		    catch (Exception e){
+		    	//Gestion erreurs pour Class.forName
+		    	e.printStackTrace();
+		    }
+		    finally{
+		    	//bloc finally utilisÃ© pour fermer les ressources
+		    	try{
+		    		if(stmt != null)
+		    			stmt.close();
+		    	}
+		    	catch (SQLException se2){
+		    	}//rien Ã  faire
+		    	try{
+		    		if(conn != null)
+		    			conn.close();
+		    	}
+		    	catch (SQLException se){
+		    		se.printStackTrace();
+		    	}
+		    }
+		 
+		  }
+	
+	public static void modifEquipe(int idrech, String newnom, int newnbstaff, int newnbjoueur, int newclassement){
+		Connection conn = null;
+		Statement stmt = null;
+		    try {
+		    //Etape 2: Enregistrement JDBC Driver
+		      Class.forName("com.mysql.jdbc.Driver");
+		      System.out.println("Driver O.K.");
+		      
+		    //Etape 3: Ouverture connexion
+		      System.out.println("Connexion a  la BDD...");
+		      conn = DriverManager.getConnection(DB_URL,USER, PWD);
+			  System.out.println("Connexion etablie...");
+		      
+		    //Etape 4: Execution de la requete
+		      System.out.println("Creation de la requete...");
+		      stmt = conn.createStatement();
+		      String sql;
+		      sql = "(UPDATE  equipe SET nom='"+newnom+"', nbstaff='"+newnbstaff+"', nbjoueur='"+newnbjoueur+"', classement='"+newclassement+"' WHERE idequipe='"+idrech+"')";
+		      ResultSet rs = stmt.executeQuery(sql);
+		      
+		    //Etape 5: Extraction data du ResultSet
+		      while(rs.next()){
+		    	  //Retrieve par colonne
+		    	  String nom = rs.getString("nom");
+		    	  int nbstaff = rs.getInt("nbstaff");
+		    	  int nbjoueur = rs.getInt("nbjoueur");
+		    	  int classement = rs.getInt("classement");
+		    	  int idequipe = rs.getInt("idequipe");
+		    	  
+		    	  //affichage des valeurs de la BDD
+				  System.out.print("ID equipe: "+idequipe);
+		    	  System.out.print(", nouveau nom: "+nom);
+		    	  System.out.print(", Nombre de personnes composant le staff:"+nbstaff);
+		    	  System.out.print(", Nombre de joueurs: "+nbjoueur);
+		    	  System.out.println(", nouveau classement: "+classement);
 		      }
 		      
 		    //Etape 6: Nettoyage de l'environnement
@@ -189,6 +408,7 @@ public class LectureSQL {
 		    	  System.out.print(", Nom: "+nom);
 		    	  System.out.print(", Prenom:"+prenom);
 		    	  System.out.print(", Date de Naissance: "+datenais);
+		    	  System.out.print(", Sport concerne: "+sport);
 		    	  System.out.print(", ID equipe: "+idequipe);				  
 		      }
 		      
@@ -257,6 +477,7 @@ public class LectureSQL {
 		    	  System.out.print(", Nom: "+nom);
 		    	  System.out.print(", Prenom:"+prenom);
 		    	  System.out.print(", Date de Naissance: "+datenais);
+		    	  System.out.print(", Sport concerne: "+sport);
 		    	  System.out.print(", ID equipe: "+idequipe);				  
 		      }
 		      
