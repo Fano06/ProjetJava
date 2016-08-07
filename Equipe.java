@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Equipe {
 
-	int idequipe;
+	int idequipe = 0;
 	String nom;
 	int nbstaff;
 	int nbjoueur;
@@ -12,11 +12,11 @@ public class Equipe {
 	int idtournoi;
 	int classement;
 	private static int compteur = 0;
-	//ArrayList<Sportif> sportifs = new ArrayList<Sportif>();
+	ArrayList<Sportif> sportifs = new ArrayList<Sportif>();
 	ArrayList<Equipe> equipes = new ArrayList<Equipe>();
 	
 	public Equipe(String nom, int nbstaff, int nbjoueur, String sport, int idtournoi, int classement){
-		//this.idequipe = compteur++;
+		this.idequipe = 0;
 		this.nom = nom;
 		this.nbstaff = nbstaff;
 		this.nbjoueur = nbjoueur;
@@ -25,9 +25,9 @@ public class Equipe {
 		this.classement = classement;
 	}
 	
-	//public int getId(){
-		//return this.idequipe;
-	//}
+	public int getId(int a){
+		return a;
+	}
 	
 	public String getNom(){
 		return this.nom;
@@ -49,13 +49,13 @@ public class Equipe {
 		return s;
 	}
 	
-	public String rechercheEquipe (int idequipe){ 
+	public String rechercheEquipe (int idrech){ 
 		for (int i=0; i<compteur; i++){
-			if (idequipe == i){
+			if (idrech == i){
 				return "Nom: "+nom+"\n"+"Nombre de staff: "+nbstaff+"\n"+"Sport: "+sport+"\n"+"Nombre de joueur: "+nbjoueur+"\n"+"Fait parti du tournoi numero: "+idtournoi+"\n"+"Classement: "+classement;
 			}				
 		}
-		return "L'Ã©quipe n'existe pas";
+		return "L'equipe n'existe pas";
 	}
 	
 	public void modifEquipe(){ /* a faire*/
