@@ -6,11 +6,13 @@ import java.sql.*;
 public class AjoutSQL {
 	//JDBC diver nom et database URL
 	static final String JDBC_DRIVER ="com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost/multisport";
+	static final String DB_URL = "jdbc:mysql://127.0.0.1/multisport";
 	
 	//BDD IDs
 	static final String USER ="root";
 	static final String PWD="";
+	
+	// Connexion a la table Equipe
 	
 	public static void connexionAjoutEquipe(int idequipe, String nom, int nbstaff, int nbjoueur, String sport, int idtournoi, int classement){
 		Connection conn = null;
@@ -45,7 +47,7 @@ public class AjoutSQL {
 			e.printStackTrace();
 		}
 		finally{
-			//bloc finally utilisÃ© pour fermer les ressources
+			//bloc finally utilis2 pour fermer les ressources
 			try{
 				if(stmt!=null)
 				conn.close();
@@ -62,6 +64,8 @@ public class AjoutSQL {
 		}
 		System.out.println("Fin connexion BDD...");
 	}
+	
+	// Connexion a la BDD Sportif
 	
 	public static void connexionAjoutSportif(int idsportif, String nom, String prenom, String dateNaissance, int idequipe, String sport){
 		Connection conn = null;
@@ -114,6 +118,8 @@ public class AjoutSQL {
 		System.out.println("Fin connexion BDD...");
 	}
 	
+	// Connexion a la table Match
+	
 	public static void connexionAjoutMatch(int idmatch, int idtournoi, int idequipe1, int idequipe2, String date, String lieu, String score, int equipegagnante){
 		Connection conn = null;
 		Statement stmt = null;
@@ -127,7 +133,7 @@ public class AjoutSQL {
 		      conn = DriverManager.getConnection(DB_URL,USER, PWD);
 			  System.out.println("Connexion Ã©tablie...");				  
 		
-			//Etape 4: Execution de la requÃªte
+			//Etape 4: Execution de la requete
 			System.out.println("Insertion des donnÃ©es dans la table...");
 			stmt = conn.createStatement();
     
@@ -147,7 +153,7 @@ public class AjoutSQL {
 			e.printStackTrace();
 		}
 		finally{
-			//bloc finally utilisÃ© pour fermer les ressources
+			//bloc finally utilise pour fermer les ressources
 			try{
 				if(stmt!=null)
 				conn.close();
@@ -164,6 +170,8 @@ public class AjoutSQL {
 		}
 		System.out.println("Fin connexion BDD...");
 	}
+	
+	// Connexion a la table Staff
 	
 	public static void connexionAjoutStaff(int idmembre, String nom, String prenom, int idequipe, String fonction){
 		Connection conn = null;
@@ -215,6 +223,9 @@ public class AjoutSQL {
 		}
 		System.out.println("Fin connexion BDD...");
 	}
+	
+	// Connexion a la table Tournoi
+	
 	public static void connexionAjoutTournoi(int idtournoi, String nom, String sport, int nbequipe, String dateD, String dateF, String lieu){
 	Connection conn = null;
 	Statement stmt = null;
@@ -265,6 +276,9 @@ public class AjoutSQL {
 	}
 		System.out.println("Fin connexion BDD...");
 	}
+	
+	// Connexion a la table Inscription
+	
 	public static void connexionAjoutInscription(int idinscription, int idtournoi, String tournoi, String equipe, String date){
 	Connection conn = null;
 	Statement stmt = null;
@@ -315,6 +329,9 @@ public class AjoutSQL {
 	}
 		System.out.println("Fin connexion BDD...");
 	}
+	
+	// Connexion a la table Classement
+	
 	public void connexionAjoutClassement(int idclassement, String date, int idequipe){
 	Connection conn = null;
 	Statement stmt = null;
@@ -329,14 +346,14 @@ public class AjoutSQL {
 		  System.out.println("Connexion Ã©tablie...");				  
 	
 		//Etape 4: Execution de la requÃªte
-		System.out.println("Insertion des donnÃ©es dans la table...");
+		System.out.println("Insertion des donnees dans la table...");
 		stmt = conn.createStatement();
 
 		String sql = "INSERT INTO classe " +
 					 "VALUES ('"+idclassement+"', '"+date+"', '"+idequipe+"')";
 		stmt.executeUpdate(sql);
 
-		System.out.println("DonnÃ©es ajoutÃ©es dans la table...");
+		System.out.println("DonnÃ©es ajoutees dans la table...");
 
 	}
 	catch(SQLException se){
@@ -365,6 +382,9 @@ public class AjoutSQL {
 	}
 		System.out.println("Fin connexion BDD...");
 	}
+	
+	// Connexion a la table Tournoi
+	
 	public void connexionAjoutAnnulation(int idannulation, int idmatch, String cause){
 	Connection conn = null;
 	Statement stmt = null;
@@ -386,7 +406,7 @@ public class AjoutSQL {
 					 "VALUES ('"+idannulation+"', '"+idmatch+"', '"+cause+"')";
 		stmt.executeUpdate(sql);
 
-		System.out.println("DonnÃ©es ajoutÃ©es dans la table...");
+		System.out.println("DonnÃ©es ajoutees dans la table...");
 
 	}
 	catch(SQLException se){
@@ -415,6 +435,8 @@ public class AjoutSQL {
 	}
 		System.out.println("Fin connexion BDD...");
 	}
+	
+	// Connexion a la table Report
 	
 	public void connexionAjoutReport(int idreport, int idmatch, String datereport, String cause){
 	Connection conn = null;
