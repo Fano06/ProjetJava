@@ -37,6 +37,22 @@ public class Tournoi {
 		tournois.remove(b);
 	}
 	
+	public int setNbEquipe(int e){
+		return this.nbequipe;
+	}
+	
+	public String setDateD(String d){
+		return this.dateD;
+	}
+	
+	public String setDateF(String f){
+		return this.dateF;
+	}
+	
+	public String setLieu(String l){
+		return this.lieu;
+	}
+	
 	public String rechercheTournois (int idrech){
 		for (int i=0; i<compteur; i++){
 			if (idrech == i){
@@ -52,10 +68,6 @@ public class Tournoi {
 				s= s+"\n"+a;
 		}
 		return s;
-	}
-	
-	public void modifTournoi(){ /* a faire*/
-		
 	}
 	
 	public String toString(){			
