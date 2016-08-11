@@ -40,6 +40,18 @@ public class Equipe {
 	public void suppressionEquipe(Equipe b){
 		equipes.remove(b);
 	}
+	
+	public int setClassement(int c){
+		return this.classement;
+	}
+	
+	public int setNbStaff(int s){
+		return this.nbstaff;
+	}
+	
+	public int setNbJoueur(int j){
+		return this.nbjoueur;
+	}
 
 	public String listeEquipes(){  /*afficher la liste des equipes*/ 
 		String s = new String();
@@ -56,10 +68,6 @@ public class Equipe {
 			}				
 		}
 		return "L'equipe n'existe pas";
-	}
-	
-	public void modifEquipe(){ /* a faire*/
-		
 	}
 	
 	public String toString(){
