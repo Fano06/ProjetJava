@@ -1076,6 +1076,8 @@ public class LectureSQL {
 		    }
 		  }
 	
+	// Lecture des classements
+	
 	public static void LectClassements() {
 		Connection conn = null;
 		Statement stmt = null;
@@ -1142,6 +1144,8 @@ public class LectureSQL {
 		    }
 		  }
 	
+	// Lecture d'un classement par la recherche
+	
 	public static void LectUnClassement(int id) {
 		Connection conn = null;
 		Statement stmt = null;
@@ -1160,6 +1164,142 @@ public class LectureSQL {
 		      stmt = conn.createStatement();
 		      String sql;
 		      sql = "(SELECT  idclassement, idtournoi, idequipe, sport FROM classement WHERE idtournoi='"+id+"')";
+		      ResultSet rs = stmt.executeQuery(sql);
+		      
+		    //Etape 5: Extraction data du ResultSet
+		      while(rs.next()){
+		    	  //Retrieve par colonne
+		    	  int idclassement = rs.getInt("idclassement");
+		    	  int idtournoi = rs.getInt("idtournoi");
+		    	  int idequipe = rs.getInt("idequipe");
+		    	  String sport = rs.getString("sport");
+		    	  
+		    	  //affichage des valeurs de la BDD
+				  System.out.print("ID classement: "+idclassement);
+		    	  System.out.print(", ID tournoi: "+idtournoi);
+		    	  System.out.print(", ID equipe:"+idequipe);
+		    	  System.out.print(", Sport: "+sport);
+		      }
+		      
+		    //Etape 6: Nettoyage de l'environnement
+		      rs.close();
+		      stmt.close();
+		      conn.close();		         
+		    } 
+		    catch (SQLException se) {
+		    	//Gestion erreurs pour JDBC
+		      se.printStackTrace();
+		    }
+		    catch (Exception e){
+		    	//Gestion erreurs pour Class.forName
+		    	e.printStackTrace();
+		    }
+		    finally{
+		    	//bloc finally utilisÃ© pour fermer les ressources
+		    	try{
+		    		if(stmt != null)
+		    			stmt.close();
+		    	}
+		    	catch (SQLException se2){
+		    	}//rien Ã  faire
+		    	try{
+		    		if(conn != null)
+		    			conn.close();
+		    	}
+		    	catch (SQLException se){
+		    		se.printStackTrace();
+		    	}
+		    }
+		  }
+	
+	// Lecture classement d'un tournoi recherché
+	
+	public static void LectClassementRechSport(int id2) {
+		Connection conn = null;
+		Statement stmt = null;
+		    try {
+		    //Etape 2: Enregistrement JDBC Driver
+		      Class.forName("com.mysql.jdbc.Driver");
+		      System.out.println("Driver O.K.");
+		      
+		    //Etape 3: Ouverture connexion
+		      System.out.println("Connexion a  la BDD...");
+		      conn = DriverManager.getConnection(DB_URL,USER, PWD);
+			  System.out.println("Connexion etablie...");
+		      
+		    //Etape 4: Execution de la requete
+		      System.out.println("Creation de la requete...");
+		      stmt = conn.createStatement();
+		      String sql;
+		      sql = "(SELECT  idequipe, nom, sport, idtournoi, classement FROM equipe WHERE idtournoi='"+id2+"' ORDER BY classement ASC)";
+		      ResultSet rs = stmt.executeQuery(sql);
+		      
+		    //Etape 5: Extraction data du ResultSet
+		      while(rs.next()){
+		    	  //Retrieve par colonne
+		    	  int idclassement = rs.getInt("idclassement");
+		    	  int idtournoi = rs.getInt("idtournoi");
+		    	  int idequipe = rs.getInt("idequipe");
+		    	  String sport = rs.getString("sport");
+		    	  
+		    	  //affichage des valeurs de la BDD
+				  System.out.print("ID classement: "+idclassement);
+		    	  System.out.print(", ID tournoi: "+idtournoi);
+		    	  System.out.print(", ID equipe:"+idequipe);
+		    	  System.out.print(", Sport: "+sport);
+		      }
+		      
+		    //Etape 6: Nettoyage de l'environnement
+		      rs.close();
+		      stmt.close();
+		      conn.close();		         
+		    } 
+		    catch (SQLException se) {
+		    	//Gestion erreurs pour JDBC
+		      se.printStackTrace();
+		    }
+		    catch (Exception e){
+		    	//Gestion erreurs pour Class.forName
+		    	e.printStackTrace();
+		    }
+		    finally{
+		    	//bloc finally utilisÃ© pour fermer les ressources
+		    	try{
+		    		if(stmt != null)
+		    			stmt.close();
+		    	}
+		    	catch (SQLException se2){
+		    	}//rien Ã  faire
+		    	try{
+		    		if(conn != null)
+		    			conn.close();
+		    	}
+		    	catch (SQLException se){
+		    		se.printStackTrace();
+		    	}
+		    }
+		  }
+	
+	// Lecture des classements par tounois
+	
+	public static void LectClassementBySport() {
+		Connection conn = null;
+		Statement stmt = null;
+		    try {
+		    //Etape 2: Enregistrement JDBC Driver
+		      Class.forName("com.mysql.jdbc.Driver");
+		      System.out.println("Driver O.K.");
+		      
+		    //Etape 3: Ouverture connexion
+		      System.out.println("Connexion a  la BDD...");
+		      conn = DriverManager.getConnection(DB_URL,USER, PWD);
+			  System.out.println("Connexion etablie...");
+		      
+		    //Etape 4: Execution de la requete
+		      System.out.println("Creation de la requete...");
+		      stmt = conn.createStatement();
+		      String sql;
+		      sql = "(SELECT  idequipe, nom, sport, tournoi, classement FROM equipe ORDER BY classement ASC)";
 		      ResultSet rs = stmt.executeQuery(sql);
 		      
 		    //Etape 5: Extraction data du ResultSet
