@@ -53,9 +53,6 @@ public class Annulation {
 		return "Il n'y aucune annulation correspondante";
 	}
 	
-	public void modifAnnulation(){ /* a faire*/
-		
-	}
 	
 	public String toString(){
 		return "ID: "+idannul+"\n"+"ID Match: "+idmatch+"\n"+"Cause : "+cause;
