@@ -29,6 +29,10 @@ public class Staff {
 		return this.idequipe;
 	}
 	
+	public String setFonction(String f){
+		return this.fonction;
+	}
+	
 	public String getFonction(){
 		return this.fonction;
 	}
