@@ -40,6 +40,10 @@ public class Match {
 		matchs.remove(b);
 	}
 	
+	public String setScore(String s){
+		return this.score;
+	}
+	
 	public String rechercheMatch (int idrech){
 		for (int i=0; i<compteur; i++){
 			if (idrech== i){
@@ -55,10 +59,6 @@ public class Match {
 				s= s+"\n"+a;
 		}
 		return s;
-	}
-	
-	public void modifMatch(){ /* a faire*/
-		
 	}
 	
 	public String toString(int idrech){
