@@ -59,10 +59,6 @@ public class Report {
 		return "Il n'y aucun report correspondant";
 	}
 	
-	public void modifReport(){ /* a faire*/
-		
-	}
-	
 	public String toString(){
 		return "ID: "+idreport+"\n"+"ID Match: "+idmatch+"\n"+"Date report: "+datereport+"\n"+"Cause : "+cause;
 	}
