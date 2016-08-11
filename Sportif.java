@@ -29,6 +29,14 @@ public class Sportif {
 		return this.nom;
 	}
 	
+	public String setNom(String n){
+		return this.nom;
+	}
+	
+	public int setIdEquipe(int i){
+		return this.idequipe;
+	}
+	
 	public void ajoutSportif(Sportif a){
 		sportifs.add(a);
 	}
@@ -52,10 +60,6 @@ public class Sportif {
 			}
 		}
 		return "Le sportif n'existe pas";
-	}
-	
-	public void modifSportif(){ /* a faire*/
-		
 	}
 	
 	public String toString(int idrech){
